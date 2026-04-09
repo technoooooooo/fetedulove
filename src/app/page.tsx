@@ -1,65 +1,523 @@
+"use client";
+
+import { motion } from "framer-motion";
 import Image from "next/image";
+import AnimatedSection from "@/components/AnimatedSection";
+import Marquee from "@/components/Marquee";
+import Countdown from "@/components/Countdown";
+import FloatingDecorations from "@/components/FloatingDecorations";
+import MusicPlayer from "@/components/MusicPlayer";
+
+const NAV_ITEMS = [
+  { label: "Programme", href: "#programme" },
+  { label: "Infos", href: "#infos" },
+  { label: "RSVP", href: "#rsvp" },
+];
+
+function Nav() {
+  return (
+    <nav className="fixed top-0 left-0 right-0 z-50 nav-blur bg-rose-bg/80">
+      <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
+        <a href="#">
+          <Image
+            src="/images/logo-red.png"
+            alt="The F&AN Club"
+            width={50}
+            height={50}
+            className="w-10 h-10 sm:w-12 sm:h-12"
+          />
+        </a>
+        <div className="flex gap-6">
+          {NAV_ITEMS.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-sm font-semibold uppercase tracking-wider text-rouge hover:opacity-60 transition-opacity"
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </div>
+    </nav>
+  );
+}
+
+function Hero() {
+  return (
+    <section className="relative min-h-screen flex flex-col items-center justify-center px-6 overflow-hidden">
+      {/* Main content */}
+      <motion.div
+        className="text-center z-10"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+      >
+        <motion.p
+          className="font-script text-2xl sm:text-3xl md:text-4xl mb-1 text-rouge"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3, duration: 0.8 }}
+        >
+          Fiona & Antoine
+        </motion.p>
+        <motion.p
+          className="text-sm sm:text-base md:text-lg mb-6 opacity-80"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.8 }}
+        >
+          vous invitent à leur
+        </motion.p>
+
+        <motion.h1
+          className="font-display text-[4rem] sm:text-[6rem] md:text-[8rem] lg:text-[10rem] leading-[0.85] mb-8"
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7, duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+        >
+          Fête du
+          <br />
+          <span className="text-[5rem] sm:text-[7rem] md:text-[10rem] lg:text-[13rem]">
+            Love
+          </span>
+        </motion.h1>
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+        >
+          <p className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4">
+            05-06 Sept. 2026
+          </p>
+        </motion.div>
+      </motion.div>
+
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="absolute bottom-8 left-1/2 -translate-x-1/2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.2, duration: 1 }}
+      >
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+          className="flex flex-col items-center gap-2 opacity-60"
+        >
+          <span className="text-xs uppercase tracking-widest font-medium">Viens voir ce qu&apos;on te prépare</span>
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+            <path
+              d="M10 4v12m0 0l-4-4m4 4l4-4"
+              stroke="#D33B29"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
+
+function MarqueeSection() {
+  return (
+    <div className="py-6 bg-rouge text-rose overflow-hidden relative z-10">
+      <Marquee
+        text="FÊTE DU LOVE"
+        className="font-display text-2xl sm:text-3xl"
+      />
+    </div>
+  );
+}
+
+function CountdownSection() {
+  return (
+    <AnimatedSection className="py-20 sm:py-32 px-6 text-center relative z-10">
+      <p className="text-sm uppercase tracking-[0.3em] font-semibold mb-8 opacity-70">
+        Compte à rebours
+      </p>
+      <Countdown />
+      <p className="mt-10 text-lg sm:text-xl font-medium opacity-80 max-w-md mx-auto">
+        avant de faire la fête ensemble
+      </p>
+    </AnimatedSection>
+  );
+}
+
+function LogoSection() {
+  return (
+    <AnimatedSection className="py-16 sm:py-24 px-6 relative z-10">
+      <div className="flex justify-center">
+        <motion.div
+          whileHover={{ scale: 1.05, rotate: -2 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          <Image
+            src="/images/logo-red-alt.png"
+            alt="The F&AN Club"
+            width={300}
+            height={340}
+            className="w-48 sm:w-64 md:w-72 h-auto"
+          />
+        </motion.div>
+      </div>
+    </AnimatedSection>
+  );
+}
+
+function Programme() {
+  const events = [
+    {
+      time: "14h",
+      title: "Mariage civil",
+      location: "Mairie de Moulins-sur-Allier",
+      description: "On se dit oui (officiellement)",
+      color: "bg-bleu/30",
+    },
+    {
+      time: "16h",
+      title: "Cérémonie laïque",
+      location: "Saint-Didier-la-Forêt",
+      description: "On se dit oui (pour de vrai)",
+      color: "bg-jaune/40",
+    },
+    {
+      time: "17h30",
+      title: "Vin d'honneur",
+      location: "Saint-Didier-la-Forêt",
+      description: "On trinque !",
+      color: "bg-orange/20",
+    },
+    {
+      time: "20h",
+      title: "Dîner & soirée",
+      location: "Saint-Didier-la-Forêt",
+      description: "On mange, on danse, on s'aime",
+      color: "bg-rose/50",
+    },
+  ];
+
+  return (
+    <AnimatedSection
+      id="programme"
+      className="py-20 sm:py-32 px-6 max-w-4xl mx-auto relative z-10"
+    >
+      <div className="text-center mb-16">
+        <p className="text-sm uppercase tracking-[0.3em] font-semibold mb-4 opacity-70">
+          Le déroulé
+        </p>
+        <h2 className="font-display text-5xl sm:text-7xl">Programme</h2>
+      </div>
+
+      <div className="relative">
+        {/* Timeline line */}
+        <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-0.5 bg-rouge/20" />
+
+        <div className="space-y-12">
+          {events.map((event, i) => (
+            <motion.div
+              key={event.time}
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: i * 0.15, duration: 0.6 }}
+              className="relative pl-16 sm:pl-24"
+            >
+              {/* Timeline dot */}
+              <div className="absolute left-4 sm:left-6 top-1 w-4 h-4 rounded-full bg-rouge border-4 border-rose-bg" />
+
+              <div className={`${event.color} rounded-2xl p-6 sm:p-8 hover:scale-[1.01] transition-transform`}>
+                <span className="text-3xl sm:text-4xl font-bold block mb-1">
+                  {event.time}
+                </span>
+                <h3 className="text-xl sm:text-2xl font-bold mb-1">
+                  {event.title}
+                </h3>
+                <p className="opacity-70 font-medium">{event.location}</p>
+                <p className="mt-2 text-base opacity-60 italic">
+                  {event.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+
+      <AnimatedSection delay={0.3} className="text-center mt-16">
+        <div className="inline-block bg-olive text-jaune px-8 py-4 rounded-full">
+          <p className="text-xl sm:text-2xl font-bold">
+            Dimanche 6 sept. — Brunch de récupération
+          </p>
+        </div>
+      </AnimatedSection>
+    </AnimatedSection>
+  );
+}
+
+function FairePartSection() {
+  return (
+    <AnimatedSection className="py-20 sm:py-32 px-6 relative z-10">
+      <div className="max-w-lg mx-auto">
+        <motion.div
+          className="relative rounded-3xl overflow-hidden shadow-2xl group cursor-pointer"
+          whileHover={{ scale: 1.02, rotate: -1 }}
+          transition={{ type: "spring", stiffness: 300 }}
+        >
+          <Image
+            src="/faire-part.jpg"
+            alt="Faire-part Fiona & Antoine - Fête du Love"
+            width={600}
+            height={850}
+            className="w-full h-auto"
+          />
+          <div className="absolute inset-0 bg-rouge/80 flex flex-col items-center justify-center gap-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <p className="font-display text-rose text-2xl sm:text-4xl text-center px-6">
+              Meilleure déco pour ton frigo.
+            </p>
+            <a
+              href="/faire-part.jpg"
+              download="faire-part-fiona-antoine.jpg"
+              className="bg-rose text-rouge px-8 py-3 rounded-full font-bold text-sm sm:text-base uppercase tracking-wider hover:scale-105 transition-transform"
+            >
+              Télécharger
+            </a>
+          </div>
+        </motion.div>
+      </div>
+    </AnimatedSection>
+  );
+}
+
+function Infos() {
+  const cards = [
+    {
+      title: "Dress code",
+      content: "Venez comme vous êtes (mais en mode fête). On adore les couleurs !",
+      bg: "bg-jaune/50",
+    },
+    {
+      title: "Covoiturage",
+      content:
+        "On vous encourage à covoiturer ! N'hésitez pas à vous organiser entre vous.",
+      bg: "bg-bleu/40",
+    },
+    {
+      title: "Hébergement",
+      content:
+        "Quelques logements sont disponibles sur place et aux alentours. On vous enverra les détails.",
+      bg: "bg-orange/25",
+    },
+    {
+      title: "Cadeaux",
+      content:
+        "Votre présence est le plus beau des cadeaux. Mais si vous insistez, une cagnotte sera mise en place.",
+      bg: "bg-rose/60",
+    },
+  ];
+
+  return (
+    <AnimatedSection
+      id="infos"
+      className="py-20 sm:py-32 px-6 max-w-5xl mx-auto relative z-10"
+    >
+      <div className="text-center mb-16">
+        <p className="text-sm uppercase tracking-[0.3em] font-semibold mb-4 opacity-70">
+          Bon à savoir
+        </p>
+        <h2 className="font-display text-5xl sm:text-7xl">Infos pratiques</h2>
+      </div>
+
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        {cards.map((card, i) => (
+          <motion.div
+            key={card.title}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: i * 0.1, duration: 0.6 }}
+            className={`${card.bg} rounded-2xl p-8 hover:scale-[1.02] transition-all cursor-default`}
+          >
+            <h3 className="font-display text-2xl mb-3">{card.title}</h3>
+            <p className="opacity-70 leading-relaxed">{card.content}</p>
+          </motion.div>
+        ))}
+      </div>
+    </AnimatedSection>
+  );
+}
+
+function Lieux() {
+  return (
+    <AnimatedSection className="py-20 sm:py-32 px-6 max-w-4xl mx-auto relative z-10">
+      <div className="text-center mb-16">
+        <p className="text-sm uppercase tracking-[0.3em] font-semibold mb-4 opacity-70">
+          Où ça se passe
+        </p>
+        <h2 className="font-display text-5xl sm:text-7xl">Les lieux</h2>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="bg-rouge text-rose rounded-2xl p-8 sm:p-10"
+        >
+          <p className="text-sm uppercase tracking-[0.2em] opacity-70 mb-2">
+            Samedi 5 sept. &mdash; 14h
+          </p>
+          <h3 className="font-display text-3xl mb-4">Mairie</h3>
+          <p className="text-lg leading-relaxed opacity-90">
+            Mairie de Moulins-sur-Allier
+            <br />
+            <span className="opacity-70">03000 Moulins</span>
+          </p>
+          <a
+            href="https://maps.google.com/?q=Mairie+de+Moulins-sur-Allier"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-6 px-6 py-3 border-2 border-rose rounded-full text-sm font-semibold uppercase tracking-wider hover:bg-rose hover:text-rouge transition-colors"
+          >
+            Voir sur Maps
+          </a>
+        </motion.div>
+
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          className="bg-olive text-jaune rounded-2xl p-8 sm:p-10"
+        >
+          <p className="text-sm uppercase tracking-[0.2em] opacity-70 mb-2">
+            Samedi 5 sept. &mdash; 16h
+          </p>
+          <h3 className="font-display text-3xl mb-4">
+            Cérémonie & Soirée
+          </h3>
+          <p className="text-lg leading-relaxed opacity-90">
+            Saint-Didier-la-Forêt
+            <br />
+            <span className="opacity-70">03110 Allier</span>
+          </p>
+          <a
+            href="https://maps.google.com/?q=Saint-Didier-la-Forêt+03110"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-6 px-6 py-3 border-2 border-jaune rounded-full text-sm font-semibold uppercase tracking-wider hover:bg-jaune hover:text-olive transition-colors"
+          >
+            Voir sur Maps
+          </a>
+        </motion.div>
+      </div>
+    </AnimatedSection>
+  );
+}
+
+function RSVP() {
+  return (
+    <section
+      id="rsvp"
+      className="relative py-20 sm:py-32 px-6 text-center z-10"
+    >
+      <AnimatedSection>
+        <p className="text-sm uppercase tracking-[0.3em] font-semibold mb-4 opacity-70">
+          On compte sur vous
+        </p>
+        <h2 className="font-display text-5xl sm:text-7xl md:text-8xl mb-8">
+          Vous venez ?
+        </h2>
+        <p className="text-lg sm:text-xl max-w-lg mx-auto mb-10 opacity-80 leading-relaxed">
+          Dites-nous si vous serez des nôtres pour cette grande fête de l&apos;amour.
+          Répondez avant le <strong className="font-bold">1er juillet 2026</strong>.
+        </p>
+
+        <motion.a
+          href="mailto:fiona.et.antoine@example.com?subject=RSVP%20Fête%20du%20Love"
+          className="inline-block bg-rouge text-rose px-10 py-5 rounded-full font-display text-xl sm:text-2xl hover:scale-105 transition-transform shadow-lg"
+          whileHover={{ scale: 1.08 }}
+          whileTap={{ scale: 0.98 }}
+        >
+          Je confirme ma venue
+        </motion.a>
+
+        <p className="mt-6 text-sm opacity-50">
+          ou contactez-nous directement
+        </p>
+      </AnimatedSection>
+
+      {/* Illustration couple en bas */}
+      <motion.div
+        className="mt-16 flex justify-center"
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: 0.3, duration: 0.8 }}
+      >
+        <Image
+          src="/images/illu-couple.png"
+          alt="Fiona & Antoine"
+          width={300}
+          height={260}
+          className="w-40 sm:w-56 h-auto opacity-40"
+        />
+      </motion.div>
+    </section>
+  );
+}
+
+function Footer() {
+  return (
+    <footer className="py-16 px-6 text-center relative z-10 bg-rouge text-rose">
+      <div className="max-w-2xl mx-auto">
+        <Image
+          src="/images/logo-white.png"
+          alt="The F&AN Club"
+          width={120}
+          height={130}
+          className="w-24 sm:w-32 h-auto mx-auto mb-6"
+        />
+        <motion.p
+          className="font-script text-3xl sm:text-4xl mb-2"
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+        >
+          Fiona & Antoine
+        </motion.p>
+        <p className="opacity-60 text-sm">
+          05-06 Septembre 2026 &mdash; Fête du Love
+        </p>
+        <p className="mt-6 text-xs opacity-30">
+          Made with love
+        </p>
+      </div>
+    </footer>
+  );
+}
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <>
+      <div className="grain-overlay" />
+      <FloatingDecorations />
+      <MusicPlayer />
+      <Nav />
+      <Hero />
+      <MarqueeSection />
+      <CountdownSection />
+      <FairePartSection />
+      <Programme />
+      <div className="bg-orange text-jaune overflow-hidden py-6 relative z-10">
+        <Marquee text="ON DANSE" className="font-display text-2xl sm:text-3xl" />
+      </div>
+      <Lieux />
+      <Infos />
+      <RSVP />
+      <Footer />
+    </>
   );
 }
