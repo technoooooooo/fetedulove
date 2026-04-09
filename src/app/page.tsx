@@ -7,39 +7,52 @@ import Marquee from "@/components/Marquee";
 import Countdown from "@/components/Countdown";
 import FloatingDecorations from "@/components/FloatingDecorations";
 import MusicPlayer from "@/components/MusicPlayer";
+import Van from "@/components/Van";
 
 const NAV_ITEMS = [
   { label: "Programme", href: "#programme" },
   { label: "Infos", href: "#infos" },
-  { label: "RSVP", href: "#rsvp" },
+  { label: "Cadeau", href: "#cagnotte" },
 ];
 
 function Nav() {
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 nav-blur bg-rose-bg/80">
-      <div className="max-w-6xl mx-auto px-6 py-3 flex items-center justify-between">
-        <a href="#">
+    <motion.nav
+      className="fixed top-4 left-1/2 -translate-x-1/2 z-50"
+      initial={{ y: -60, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ delay: 0.5, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+    >
+      <div className="flex items-center gap-2 sm:gap-3 bg-rouge/90 nav-blur rounded-full px-3 py-2 sm:px-4 sm:py-2.5 shadow-lg">
+        <a href="#" className="shrink-0">
           <Image
-            src="/images/logo-red.png"
+            src="/images/logo-white.png"
             alt="The F&AN Club"
-            width={50}
-            height={50}
-            className="w-10 h-10 sm:w-12 sm:h-12"
+            width={40}
+            height={40}
+            className="w-8 h-8 sm:w-9 sm:h-9"
           />
         </a>
-        <div className="flex gap-6">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm font-semibold uppercase tracking-wider text-rouge hover:opacity-60 transition-opacity"
-            >
-              {item.label}
-            </a>
-          ))}
-        </div>
+        <div className="w-px h-6 bg-rose/30" />
+        {NAV_ITEMS.map((item) => (
+          <a
+            key={item.href}
+            href={item.href}
+            className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-rose/80 hover:text-rose transition-colors px-2 sm:px-3 py-1"
+          >
+            {item.label}
+          </a>
+        ))}
+        <a
+          href="https://tally.so/r/J9pL2Y"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-rose text-rouge text-xs sm:text-sm font-bold uppercase tracking-wider px-4 py-1.5 rounded-full hover:scale-105 transition-transform ml-1"
+        >
+          RSVP
+        </a>
       </div>
-    </nav>
+    </motion.nav>
   );
 }
 
@@ -170,7 +183,7 @@ function LogoSection() {
 }
 
 function Programme() {
-  const events = [
+  const eventsFirst = [
     {
       time: "14h",
       title: "Mariage civil",
@@ -185,6 +198,9 @@ function Programme() {
       description: "On se dit oui (pour de vrai)",
       color: "bg-jaune/40",
     },
+  ];
+
+  const eventsDJ = [
     {
       time: "17h30",
       title: "Vin d'honneur et Open air",
@@ -226,7 +242,8 @@ function Programme() {
         <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-0.5 bg-rouge/20" />
 
         <div className="space-y-12">
-          {events.map((event, i) => (
+          {/* First events (mariage civil + cérémonie) */}
+          {eventsFirst.map((event, i) => (
             <motion.div
               key={event.time}
               initial={{ opacity: 0, x: -30 }}
@@ -235,23 +252,83 @@ function Programme() {
               transition={{ delay: i * 0.15, duration: 0.6 }}
               className="relative pl-16 sm:pl-24"
             >
-              {/* Timeline dot */}
               <div className="absolute left-4 sm:left-6 top-1 w-4 h-4 rounded-full bg-rouge border-4 border-rose-bg" />
-
               <div className={`${event.color} rounded-2xl p-6 sm:p-8 hover:scale-[1.01] transition-transform`}>
-                <span className="text-3xl sm:text-4xl font-bold block mb-1">
-                  {event.time}
-                </span>
-                <h3 className="text-xl sm:text-2xl font-bold mb-1">
-                  {event.title}
-                </h3>
+                <span className="text-3xl sm:text-4xl font-bold block mb-1">{event.time}</span>
+                <h3 className="text-xl sm:text-2xl font-bold mb-1">{event.title}</h3>
                 <p className="opacity-70 font-medium">{event.location}</p>
-                <p className="mt-2 text-base opacity-60 italic">
-                  {event.description}
-                </p>
+                <p className="mt-2 text-base opacity-60 italic">{event.description}</p>
               </div>
             </motion.div>
           ))}
+
+          {/* DJ bracket group: vin d'honneur + soirée */}
+          <div className="relative pl-16 sm:pl-24">
+            <div className="flex gap-4 sm:gap-6">
+              {/* Cards column */}
+              <div className="flex-1 space-y-6">
+                {eventsDJ.map((event, i) => (
+                  <motion.div
+                    key={event.time}
+                    initial={{ opacity: 0, x: -30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: (i + 2) * 0.15, duration: 0.6 }}
+                    className="relative"
+                  >
+                    {/* Timeline dots */}
+                    <div className="absolute -left-12 sm:-left-[4.5rem] top-1 w-4 h-4 rounded-full bg-rouge border-4 border-rose-bg" />
+                    <div className={`${event.color} rounded-2xl p-6 sm:p-8 hover:scale-[1.01] transition-transform`}>
+                      <span className="text-3xl sm:text-4xl font-bold block mb-1">{event.time}</span>
+                      <h3 className="text-xl sm:text-2xl font-bold mb-1">{event.title}</h3>
+                      <p className="opacity-70 font-medium">{event.location}</p>
+                      <p className="mt-2 text-base opacity-60 italic">{event.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              {/* Bracket + DJ tag */}
+              <motion.div
+                className="flex items-center gap-3 shrink-0"
+                initial={{ opacity: 0, x: 20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+              >
+                {/* Bracket SVG */}
+                <svg width="20" height="100%" viewBox="0 0 20 200" preserveAspectRatio="none" className="h-full" fill="none">
+                  <path
+                    d="M2 8 C12 8, 16 16, 16 30 L16 85 C16 95, 18 100, 20 100 C18 100, 16 105, 16 115 L16 170 C16 184, 12 192, 2 192"
+                    stroke="#D33B29"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    fill="none"
+                  />
+                </svg>
+                {/* DJ label */}
+                <a
+                  href="https://soundcloud.com/egmusique"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-rouge text-rose rounded-2xl px-4 py-5 sm:px-5 sm:py-6 text-center hover:scale-105 transition-transform group"
+                >
+                  <p className="font-display text-base sm:text-lg leading-tight mb-1">
+                    DJ set by
+                  </p>
+                  <p className="font-display text-2xl sm:text-3xl leading-none mb-3">
+                    EG
+                  </p>
+                  <div className="flex items-center justify-center gap-1.5 opacity-60 group-hover:opacity-100 transition-opacity">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M8 5v14l11-7z" />
+                    </svg>
+                    <span className="text-xs uppercase tracking-wider font-semibold">Écouter</span>
+                  </div>
+                </a>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -541,6 +618,59 @@ function RSVP() {
   );
 }
 
+function Cagnotte() {
+  return (
+    <AnimatedSection id="cagnotte" className="py-20 sm:py-32 px-6 relative z-10">
+      <div className="max-w-3xl mx-auto">
+        <div className="bg-rouge text-rose rounded-3xl p-8 sm:p-12 md:p-16 overflow-hidden relative">
+          {/* Van illustration */}
+          <motion.div
+            className="flex justify-center mb-10"
+            initial={{ opacity: 0, x: -60 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, ease: [0.25, 0.1, 0.25, 1] }}
+          >
+            <Van size={360} className="w-72 sm:w-80 md:w-[420px] h-auto" />
+          </motion.div>
+
+          <div className="text-center">
+            <p className="text-sm uppercase tracking-[0.3em] font-semibold mb-4 opacity-60">
+              En lieu de liste de mariage
+            </p>
+            <h2 className="font-display text-4xl sm:text-5xl md:text-6xl mb-6">
+              La cagnotte
+            </h2>
+            <p className="text-lg sm:text-xl leading-relaxed opacity-90 max-w-xl mx-auto mb-4">
+              Votre présence est déjà le plus beau des cadeaux.
+            </p>
+            <p className="text-base sm:text-lg leading-relaxed opacity-80 max-w-xl mx-auto mb-10">
+              Mais si le coeur vous en dit, vous pouvez contribuer à notre rêve :
+              un <strong className="font-bold">van aménagé</strong>{" "}pour partir à l&apos;aventure.
+            </p>
+
+            <motion.div
+              className="inline-block bg-rose text-rouge px-10 py-5 rounded-full font-display text-xl sm:text-2xl shadow-lg cursor-default relative group"
+              whileHover={{ scale: 1.08 }}
+            >
+              <span className="group-hover:opacity-0 transition-opacity duration-200">
+                Participer à la cagnotte
+              </span>
+              <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-base sm:text-lg font-bold">
+                Ça arrive, on est à la bourre
+              </span>
+            </motion.div>
+
+            <p className="mt-6 text-sm opacity-40">
+              Lien cagnotte à venir
+            </p>
+          </div>
+        </div>
+      </div>
+    </AnimatedSection>
+  );
+}
+
 function Footer() {
   return (
     <footer className="py-16 px-6 text-center relative z-10 bg-rouge text-rose">
@@ -589,6 +719,7 @@ export default function Home() {
       <Lieux />
       <Infos />
       <RSVP />
+      <Cagnotte />
       <Footer />
     </>
   );
