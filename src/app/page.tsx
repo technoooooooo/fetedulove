@@ -179,7 +179,7 @@ function Programme() {
       color: "bg-bleu/30",
     },
     {
-      time: "16h",
+      time: "16h30",
       title: "Cérémonie laïque",
       location: "Saint-Didier-la-Forêt",
       description: "On se dit oui (pour de vrai)",
@@ -187,7 +187,7 @@ function Programme() {
     },
     {
       time: "17h30",
-      title: "Vin d'honneur",
+      title: "Vin d'honneur et Open air",
       location: "Saint-Didier-la-Forêt",
       description: "On trinque !",
       color: "bg-orange/20",
@@ -211,6 +211,14 @@ function Programme() {
           Le déroulé
         </p>
         <h2 className="font-display text-5xl sm:text-7xl">Programme</h2>
+      </div>
+
+      <div className="mb-12">
+        <div className="inline-block bg-rouge text-rose px-8 py-4 rounded-full">
+          <p className="text-xl sm:text-2xl font-bold">
+            Samedi 5 septembre — La fête
+          </p>
+        </div>
       </div>
 
       <div className="relative">
@@ -247,13 +255,41 @@ function Programme() {
         </div>
       </div>
 
-      <AnimatedSection delay={0.3} className="text-center mt-16">
-        <div className="inline-block bg-olive text-jaune px-8 py-4 rounded-full">
-          <p className="text-xl sm:text-2xl font-bold">
-            Dimanche 6 sept. — Brunch de récupération
-          </p>
+      <div className="mt-20">
+        <div className="mb-12">
+          <div className="inline-block bg-olive text-jaune px-8 py-4 rounded-full">
+            <p className="text-xl sm:text-2xl font-bold">
+              Dimanche 6 septembre — Le brunch
+            </p>
+          </div>
         </div>
-      </AnimatedSection>
+
+        <div className="relative">
+          <div className="absolute left-6 sm:left-8 top-0 bottom-0 w-0.5 bg-rouge/20" />
+          <div className="space-y-12">
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="relative pl-16 sm:pl-24"
+            >
+              <div className="absolute left-4 sm:left-6 top-1 w-4 h-4 rounded-full bg-rouge border-4 border-rose-bg" />
+              <div className="bg-olive/20 rounded-2xl p-6 sm:p-8 hover:scale-[1.01] transition-transform">
+                <span className="text-3xl sm:text-4xl font-bold block mb-1">
+                  11h30 — 15h30
+                </span>
+                <h3 className="text-xl sm:text-2xl font-bold mb-1">
+                  Brunch & DJ set
+                </h3>
+                <p className="mt-2 text-base opacity-60 italic">
+                  (table du temps à venir)
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
     </AnimatedSection>
   );
 }
@@ -293,32 +329,6 @@ function FairePartSection() {
 }
 
 function Infos() {
-  const cards = [
-    {
-      title: "Dress code",
-      content: "Venez comme vous êtes (mais en mode fête). On adore les couleurs !",
-      bg: "bg-jaune/50",
-    },
-    {
-      title: "Covoiturage",
-      content:
-        "On vous encourage à covoiturer ! N'hésitez pas à vous organiser entre vous.",
-      bg: "bg-bleu/40",
-    },
-    {
-      title: "Hébergement",
-      content:
-        "Quelques logements sont disponibles sur place et aux alentours. On vous enverra les détails.",
-      bg: "bg-orange/25",
-    },
-    {
-      title: "Cadeaux",
-      content:
-        "Votre présence est le plus beau des cadeaux. Mais si vous insistez, une cagnotte sera mise en place.",
-      bg: "bg-rose/60",
-    },
-  ];
-
   return (
     <AnimatedSection
       id="infos"
@@ -331,20 +341,84 @@ function Infos() {
         <h2 className="font-display text-5xl sm:text-7xl">Infos pratiques</h2>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-        {cards.map((card, i) => (
-          <motion.div
-            key={card.title}
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: i * 0.1, duration: 0.6 }}
-            className={`${card.bg} rounded-2xl p-8 hover:scale-[1.02] transition-all cursor-default`}
-          >
-            <h3 className="font-display text-2xl mb-3">{card.title}</h3>
-            <p className="opacity-70 leading-relaxed">{card.content}</p>
-          </motion.div>
-        ))}
+      <div className="space-y-8">
+        {/* Hébergement */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-bleu/40 rounded-2xl p-8 sm:p-10"
+        >
+          <h3 className="font-display text-3xl mb-4">Où dormir ?</h3>
+          <p className="opacity-80 leading-relaxed mb-4">
+            Nous vous recommandons l&apos;<a href="https://all.accor.com/booking/fr/ibis/hotel/9490?destination=03500-saint-pourcain-sur-sioule&dateIn=2026-09-05&dateOut=2026-09-06&nights=1&hideWDR=false&accessibleRoom=false" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:opacity-70 transition-opacity">Hôtel Ibis de Saint-Pourçain-sur-Sioule</a>,
+            idéalement situé à 12 minutes du lieu de réception et à 30 minutes de la mairie.
+          </p>
+          <p className="opacity-70 leading-relaxed mb-3">
+            D&apos;autres options sont disponibles selon vos préférences :
+          </p>
+          <ul className="space-y-2 opacity-70">
+            <li className="flex items-start gap-2">
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-rouge shrink-0" />
+              <span><strong>Hôtel à Vichy</strong> — 17 min du lieu de réception, 57 min de la mairie</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-rouge shrink-0" />
+              <span><strong>Hôtel à Moulins-sur-Allier</strong> — à deux pas de la mairie, 40 min du lieu de réception</span>
+            </li>
+          </ul>
+        </motion.div>
+
+        {/* Transports */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-jaune/40 rounded-2xl p-8 sm:p-10"
+        >
+          <h3 className="font-display text-3xl mb-6">Transports</h3>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div>
+              <h4 className="font-bold text-lg mb-2">En train</h4>
+              <p className="opacity-70 leading-relaxed text-sm">
+                Pour la cérémonie civile : <strong>gare de Moulins-sur-Allier</strong> (15 min à pied de la mairie).
+                Pour le lieu de réception : les gares les plus proches sont <strong>Vichy</strong> (17 min en voiture)
+                et <strong>Moulins-sur-Allier</strong> (40 min en voiture).
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold text-lg mb-2">En voiture</h4>
+              <p className="opacity-70 leading-relaxed text-sm">
+                Comptez environ <strong>3h depuis Paris</strong> et <strong>5h30 depuis Marseille</strong>.
+              </p>
+            </div>
+            <div>
+              <h4 className="font-bold text-lg mb-2">Sur place</h4>
+              <p className="opacity-70 leading-relaxed text-sm">
+                Pour se déplacer entre les lieux &amp; vos hébergements, le plus simple reste la voiture.
+                Nous vous encourageons à organiser des covoiturages entre vous.
+              </p>
+              <span className="inline-block mt-3 px-5 py-2 bg-rouge/50 text-rose rounded-full text-sm font-semibold">
+                Formulaire covoiturage — à venir
+              </span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Dress code */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="bg-orange/25 rounded-2xl p-8 sm:p-10 text-center"
+        >
+          <h3 className="font-display text-3xl mb-4">Dress code</h3>
+          <p className="text-lg sm:text-xl opacity-80 max-w-lg mx-auto">
+            Soyez vous, soyez beaux, soyez joyeux.<br />
+            Le reste, on s&apos;en fout.
+          </p>
+        </motion.div>
       </div>
     </AnimatedSection>
   );
