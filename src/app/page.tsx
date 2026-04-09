@@ -23,22 +23,22 @@ function Nav() {
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.5, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
     >
-      <div className="flex items-center gap-2 sm:gap-3 bg-rouge/90 nav-blur rounded-full px-3 py-2 sm:px-4 sm:py-2.5 shadow-lg">
+      <div className="flex items-center gap-1.5 sm:gap-3 bg-rouge/90 nav-blur rounded-full px-2.5 py-2 sm:px-4 sm:py-2.5 shadow-lg">
         <a href="#" className="shrink-0">
           <Image
             src="/images/logo-white.png"
             alt="The F&AN Club"
             width={40}
             height={40}
-            className="w-8 h-8 sm:w-9 sm:h-9"
+            className="w-7 h-7 sm:w-9 sm:h-9"
           />
         </a>
-        <div className="w-px h-6 bg-rose/30" />
+        <div className="w-px h-6 bg-rose/30 hidden sm:block" />
         {NAV_ITEMS.map((item) => (
           <a
             key={item.href}
             href={item.href}
-            className="text-xs sm:text-sm font-semibold uppercase tracking-wider text-rose/80 hover:text-rose transition-colors px-2 sm:px-3 py-1"
+            className="text-[0.65rem] sm:text-sm font-semibold uppercase tracking-wider text-rose/80 hover:text-rose transition-colors px-1.5 sm:px-3 py-1"
           >
             {item.label}
           </a>
@@ -47,7 +47,7 @@ function Nav() {
           href="https://tally.so/r/J9pL2Y"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-rose text-rouge text-xs sm:text-sm font-bold uppercase tracking-wider px-4 py-1.5 rounded-full hover:scale-105 transition-transform ml-1"
+          className="bg-rose text-rouge text-[0.65rem] sm:text-sm font-bold uppercase tracking-wider px-3 sm:px-4 py-1.5 rounded-full hover:scale-105 transition-transform ml-0.5 sm:ml-1"
         >
           RSVP
         </a>
@@ -264,7 +264,7 @@ function Programme() {
 
           {/* DJ bracket group: vin d'honneur + soirée */}
           <div className="relative pl-16 sm:pl-24">
-            <div className="flex gap-4 sm:gap-6">
+            <div className="flex flex-col md:flex-row gap-4 sm:gap-6">
               {/* Cards column */}
               <div className="flex-1 space-y-6">
                 {eventsDJ.map((event, i) => (
@@ -288,9 +288,9 @@ function Programme() {
                 ))}
               </div>
 
-              {/* Bracket + DJ tag */}
+              {/* Bracket + DJ tag — hidden on mobile, shown with bracket on md+ */}
               <motion.div
-                className="flex items-center gap-3 shrink-0"
+                className="hidden md:flex items-center gap-3 shrink-0"
                 initial={{ opacity: 0, x: 20 }}
                 whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
@@ -327,6 +327,30 @@ function Programme() {
                   </div>
                 </a>
               </motion.div>
+
+              {/* DJ tag — mobile only, inline below cards */}
+              <motion.a
+                href="https://soundcloud.com/egmusique"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="md:hidden flex items-center justify-center gap-3 bg-rouge text-rose rounded-2xl px-6 py-4 text-center active:scale-95 transition-transform"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.5, duration: 0.6 }}
+              >
+                <div>
+                  <p className="font-display text-base leading-tight">
+                    DJ set by <span className="text-2xl">EG</span>
+                  </p>
+                </div>
+                <div className="flex items-center gap-1.5 opacity-70">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M8 5v14l11-7z" />
+                  </svg>
+                  <span className="text-xs uppercase tracking-wider font-semibold">Écouter</span>
+                </div>
+              </motion.a>
             </div>
           </div>
         </div>
@@ -387,7 +411,8 @@ function FairePartSection() {
             height={850}
             className="w-full h-auto"
           />
-          <div className="absolute inset-0 bg-rouge/80 flex flex-col items-center justify-center gap-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          {/* Overlay desktop (hover) */}
+          <div className="absolute inset-0 bg-rouge/80 flex-col items-center justify-center gap-6 transition-opacity duration-300 hidden sm:flex opacity-0 group-hover:opacity-100">
             <p className="font-display text-rose text-2xl sm:text-4xl text-center px-6">
               Meilleure déco pour ton frigo.
             </p>
@@ -395,6 +420,19 @@ function FairePartSection() {
               href="/faire-part.jpg"
               download="faire-part-fiona-antoine.jpg"
               className="bg-rose text-rouge px-8 py-3 rounded-full font-bold text-sm sm:text-base uppercase tracking-wider hover:scale-105 transition-transform"
+            >
+              Télécharger
+            </a>
+          </div>
+          {/* Bouton mobile (toujours visible) */}
+          <div className="sm:hidden absolute bottom-0 inset-x-0 bg-rouge/85 flex flex-col items-center gap-2 py-4 px-4">
+            <p className="font-display text-rose text-lg text-center">
+              Meilleure déco pour ton frigo.
+            </p>
+            <a
+              href="/faire-part.jpg"
+              download="faire-part-fiona-antoine.jpg"
+              className="bg-rose text-rouge px-6 py-2 rounded-full font-bold text-xs uppercase tracking-wider active:scale-95 transition-transform"
             >
               Télécharger
             </a>
@@ -649,8 +687,9 @@ function Cagnotte() {
               un <strong className="font-bold">van aménagé</strong>{" "}pour partir à l&apos;aventure.
             </p>
 
+            {/* Desktop: hover text swap */}
             <motion.div
-              className="inline-block bg-rose text-rouge px-10 py-5 rounded-full font-display text-xl sm:text-2xl shadow-lg cursor-default relative group"
+              className="hidden sm:inline-block bg-rose text-rouge px-10 py-5 rounded-full font-display text-xl sm:text-2xl shadow-lg cursor-default relative group"
               whileHover={{ scale: 1.08 }}
             >
               <span className="group-hover:opacity-0 transition-opacity duration-200">
@@ -660,6 +699,11 @@ function Cagnotte() {
                 Ça arrive, on est à la bourre
               </span>
             </motion.div>
+
+            {/* Mobile: pas de hover, texte direct */}
+            <div className="sm:hidden inline-block bg-rose text-rouge px-8 py-4 rounded-full font-display text-lg shadow-lg">
+              Ça arrive, on est à la bourre
+            </div>
 
             <p className="mt-6 text-sm opacity-40">
               Lien cagnotte à venir
