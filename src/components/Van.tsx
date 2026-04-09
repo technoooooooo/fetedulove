@@ -70,26 +70,30 @@ export default function Van({
 
         {/* --- Front wheel --- */}
         <circle cx="370" cy="220" r="36" fill="#FFCADD" stroke="#FFB3D0" strokeWidth="4" />
-        <circle cx="370" cy="220" r="22" strokeWidth="3" />
-        <circle cx="370" cy="220" r="7" fill="#FFB3D0" strokeWidth="0" />
-        {/* Wheel bolts */}
-        <circle cx="370" cy="204" r="2.5" fill="#FFB3D0" strokeWidth="0" />
-        <circle cx="370" cy="236" r="2.5" fill="#FFB3D0" strokeWidth="0" />
-        <circle cx="354" cy="220" r="2.5" fill="#FFB3D0" strokeWidth="0" />
-        <circle cx="386" cy="220" r="2.5" fill="#FFB3D0" strokeWidth="0" />
+        <g style={{ transformOrigin: "370px 220px", animation: "wheel-spin 3s linear infinite" }}>
+          <circle cx="370" cy="220" r="22" strokeWidth="3" />
+          <circle cx="370" cy="220" r="7" fill="#FFB3D0" strokeWidth="0" />
+          {/* Wheel bolts */}
+          <circle cx="370" cy="204" r="2.5" fill="#FFB3D0" strokeWidth="0" />
+          <circle cx="370" cy="236" r="2.5" fill="#FFB3D0" strokeWidth="0" />
+          <circle cx="354" cy="220" r="2.5" fill="#FFB3D0" strokeWidth="0" />
+          <circle cx="386" cy="220" r="2.5" fill="#FFB3D0" strokeWidth="0" />
+        </g>
 
         {/* Wheel arch front */}
         <path d="M330 220 C330 198, 348 180, 370 180 C392 180, 410 198, 410 220" fill="#FFCADD" stroke="#FFB3D0" strokeWidth="4" />
 
         {/* --- Rear wheel --- */}
         <circle cx="118" cy="220" r="36" fill="#FFCADD" stroke="#FFB3D0" strokeWidth="4" />
-        <circle cx="118" cy="220" r="22" strokeWidth="3" />
-        <circle cx="118" cy="220" r="7" fill="#FFB3D0" strokeWidth="0" />
-        {/* Wheel bolts */}
-        <circle cx="118" cy="204" r="2.5" fill="#FFB3D0" strokeWidth="0" />
-        <circle cx="118" cy="236" r="2.5" fill="#FFB3D0" strokeWidth="0" />
-        <circle cx="102" cy="220" r="2.5" fill="#FFB3D0" strokeWidth="0" />
-        <circle cx="134" cy="220" r="2.5" fill="#FFB3D0" strokeWidth="0" />
+        <g style={{ transformOrigin: "118px 220px", animation: "wheel-spin 3s linear infinite" }}>
+          <circle cx="118" cy="220" r="22" strokeWidth="3" />
+          <circle cx="118" cy="220" r="7" fill="#FFB3D0" strokeWidth="0" />
+          {/* Wheel bolts */}
+          <circle cx="118" cy="204" r="2.5" fill="#FFB3D0" strokeWidth="0" />
+          <circle cx="118" cy="236" r="2.5" fill="#FFB3D0" strokeWidth="0" />
+          <circle cx="102" cy="220" r="2.5" fill="#FFB3D0" strokeWidth="0" />
+          <circle cx="134" cy="220" r="2.5" fill="#FFB3D0" strokeWidth="0" />
+        </g>
 
         {/* Wheel arch rear */}
         <path d="M78 220 C78 198, 96 180, 118 180 C140 180, 158 198, 158 220" fill="#FFCADD" stroke="#FFB3D0" strokeWidth="4" />
