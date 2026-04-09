@@ -2,13 +2,27 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "The F&AN Club — Fête du Love | 05-06 Sept. 2026",
+  title: "Fiona & Antoine — Fête du Love | 5-6 Sept. 2026",
   description:
-    "Fiona & Antoine vous invitent à leur Fête du Love ! Mariage les 5 et 6 septembre 2026 à Moulins-sur-Allier et Saint-Didier-la-Forêt.",
+    "On se marie et on vous invite à faire la fête avec nous ! Rendez-vous les 5 et 6 septembre 2026.",
   openGraph: {
-    title: "The F&AN Club — Fête du Love",
-    description: "05-06 Septembre 2026 — On vous attend !",
+    title: "Fiona & Antoine vous invitent à la Fête du Love",
+    description: "5-6 septembre 2026 — On se marie et on compte sur vous !",
     type: "website",
+    images: [
+      {
+        url: "/faire-part.jpg",
+        width: 600,
+        height: 850,
+        alt: "Faire-part Fiona & Antoine — Fête du Love",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Fiona & Antoine vous invitent à la Fête du Love",
+    description: "5-6 septembre 2026 — On se marie et on compte sur vous !",
+    images: ["/faire-part.jpg"],
   },
 };
 
