@@ -510,7 +510,9 @@ function RSVP() {
         </p>
 
         <motion.a
-          href="mailto:fiona.et.antoine@example.com?subject=RSVP%20Fête%20du%20Love"
+          href="https://tally.so/r/J9pL2Y"
+          target="_blank"
+          rel="noopener noreferrer"
           className="inline-block bg-rouge text-rose px-10 py-5 rounded-full font-display text-xl sm:text-2xl hover:scale-105 transition-transform shadow-lg"
           whileHover={{ scale: 1.08 }}
           whileTap={{ scale: 0.98 }}
