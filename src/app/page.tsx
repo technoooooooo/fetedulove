@@ -18,26 +18,26 @@ const NAV_ITEMS = [
 function Nav() {
   return (
     <motion.nav
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-50 max-w-[calc(100vw-2rem)]"
+      className="fixed top-4 inset-x-6 z-50 sm:inset-x-auto sm:left-1/2 sm:-translate-x-1/2"
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ delay: 0.5, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
     >
-      <div className="flex items-center gap-1 sm:gap-3 bg-rouge/90 nav-blur rounded-full px-2 py-1.5 sm:px-4 sm:py-2.5 shadow-lg">
+      <div className="flex items-center justify-between sm:justify-start gap-2 sm:gap-3 bg-rouge/90 nav-blur rounded-full px-2 py-1.5 sm:px-4 sm:py-2.5 shadow-lg">
         <a href="#" className="shrink-0">
           <Image
             src="/images/logo-white.png"
             alt="The F&AN Club"
             width={40}
             height={40}
-            className="w-6 h-6 sm:w-9 sm:h-9"
+            className="w-7 h-7 sm:w-9 sm:h-9"
           />
         </a>
         {NAV_ITEMS.map((item) => (
           <a
             key={item.href}
             href={item.href}
-            className="text-[0.6rem] sm:text-sm font-semibold uppercase tracking-wide sm:tracking-wider text-rose/80 hover:text-rose transition-colors px-1 sm:px-3 py-1 shrink-0"
+            className="text-xs sm:text-sm font-semibold uppercase tracking-wide sm:tracking-wider text-rose/80 hover:text-rose transition-colors px-1 sm:px-3 py-1 shrink-0"
           >
             {item.label}
           </a>
@@ -46,7 +46,7 @@ function Nav() {
           href="https://tally.so/r/J9pL2Y"
           target="_blank"
           rel="noopener noreferrer"
-          className="bg-rose text-rouge text-[0.6rem] sm:text-sm font-bold uppercase tracking-wide sm:tracking-wider px-2.5 sm:px-4 py-1 sm:py-1.5 rounded-full hover:scale-105 transition-transform shrink-0"
+          className="bg-rose text-rouge text-xs sm:text-sm font-bold uppercase tracking-wide sm:tracking-wider px-3 sm:px-4 py-1 sm:py-1.5 rounded-full hover:scale-105 transition-transform shrink-0"
         >
           RSVP
         </a>
