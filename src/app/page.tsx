@@ -513,9 +513,9 @@ function Infos() {
                 Pour se déplacer entre les lieux &amp; vos hébergements, le plus simple reste la voiture.
                 Nous vous encourageons à organiser des covoiturages entre vous.
               </p>
-              <span className="inline-block mt-3 px-5 py-2 bg-rouge/50 text-rose rounded-full text-sm font-semibold">
-                Formulaire covoiturage — à venir
-              </span>
+              <a href="https://tally.so/r/rj0O0M" target="_blank" rel="noopener noreferrer" className="inline-block mt-3 px-5 py-2 bg-rouge/50 text-rose rounded-full text-sm font-semibold hover:bg-rouge/70 transition-colors">
+                Formulaire covoiturage
+              </a>
             </div>
           </div>
         </motion.div>
