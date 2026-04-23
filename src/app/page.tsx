@@ -633,6 +633,9 @@ function RSVP() {
         >
           Je confirme ma venue
         </motion.a>
+        <p className="mt-6 text-sm opacity-60 italic max-w-md mx-auto">
+          Vous avez déjà répondu ? Pas besoin de remplir à nouveau, c&apos;est noté !
+        </p>
       </AnimatedSection>
 
       {/* Illustration couple en bas */}
