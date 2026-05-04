@@ -689,27 +689,15 @@ function Cagnotte() {
               un <strong className="font-bold">van aménagé</strong>{" "}pour partir à l&apos;aventure.
             </p>
 
-            {/* Desktop: hover text swap */}
-            <motion.div
-              className="hidden sm:inline-block bg-rose text-rouge px-10 py-5 rounded-full font-display text-xl sm:text-2xl shadow-lg cursor-default relative group"
+            <motion.a
+              href="https://tribee.fr/participations/fete-du-love-fiona-antoine"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-rose text-rouge px-10 py-5 rounded-full font-display text-xl sm:text-2xl shadow-lg"
               whileHover={{ scale: 1.08 }}
             >
-              <span className="group-hover:opacity-0 transition-opacity duration-200">
-                Participer à la cagnotte
-              </span>
-              <span className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 text-base sm:text-lg font-bold">
-                Ça arrive, on est à la bourre
-              </span>
-            </motion.div>
-
-            {/* Mobile: pas de hover, texte direct */}
-            <div className="sm:hidden inline-block bg-rose text-rouge px-8 py-4 rounded-full font-display text-lg shadow-lg">
-              Ça arrive, on est à la bourre
-            </div>
-
-            <p className="mt-6 text-sm opacity-40">
-              Lien cagnotte à venir
-            </p>
+              Participer à la cagnotte
+            </motion.a>
           </div>
         </div>
       </div>
