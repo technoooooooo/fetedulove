@@ -675,9 +675,6 @@ function Cagnotte() {
           </motion.div>
 
           <div className="text-center">
-            <p className="text-sm uppercase tracking-[0.3em] font-semibold mb-4 opacity-60">
-              En lieu de liste de mariage
-            </p>
             <h2 className="font-display text-4xl sm:text-5xl md:text-6xl mb-6">
               La cagnotte
             </h2>
@@ -690,9 +687,7 @@ function Cagnotte() {
             </p>
 
             <motion.a
-              href="https://tribee.fr/participations/fete-du-love-fiona-antoine"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/cagnotte"
               className="inline-block bg-rose text-rouge px-10 py-5 rounded-full font-display text-xl sm:text-2xl shadow-lg"
               whileHover={{ scale: 1.08 }}
             >
