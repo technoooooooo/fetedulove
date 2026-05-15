@@ -184,24 +184,24 @@ function LogoSection() {
 function Programme() {
   const eventsFirst = [
     {
-      time: "14h",
-      title: "Mariage civil",
-      location: "Mairie de Moulins-sur-Allier",
-      description: "On se dit oui (officiellement)",
+      time: "15h30",
+      title: "Arrivée des invités",
+      location: "Saint-Didier-la-Forêt",
+      description: "On vous accueille",
       color: "bg-bleu/30",
     },
     {
-      time: "16h30",
+      time: "16h",
       title: "Cérémonie laïque",
       location: "Saint-Didier-la-Forêt",
-      description: "On se dit oui (pour de vrai)",
+      description: "On se dit oui",
       color: "bg-jaune/40",
     },
   ];
 
   const eventsDJ = [
     {
-      time: "17h30",
+      time: "17h",
       title: "Vin d'honneur et Open air",
       location: "Saint-Didier-la-Forêt",
       description: "On trinque !",
@@ -404,7 +404,7 @@ function FairePartSection() {
           transition={{ type: "spring", stiffness: 300 }}
         >
           <Image
-            src="/faire-part.jpg"
+            src="/faire-part.png"
             alt="Faire-part Fiona & Antoine - Fête du Love"
             width={600}
             height={850}
@@ -416,8 +416,8 @@ function FairePartSection() {
               Meilleure déco pour ton frigo.
             </p>
             <a
-              href="/faire-part.jpg"
-              download="faire-part-fiona-antoine.jpg"
+              href="/faire-part.png"
+              download="faire-part-fiona-antoine.png"
               className="bg-rose text-rouge px-8 py-3 rounded-full font-bold text-sm sm:text-base uppercase tracking-wider hover:scale-105 transition-transform"
             >
               Télécharger
@@ -429,8 +429,8 @@ function FairePartSection() {
               Meilleure déco pour ton frigo.
             </p>
             <a
-              href="/faire-part.jpg"
-              download="faire-part-fiona-antoine.jpg"
+              href="/faire-part.png"
+              download="faire-part-fiona-antoine.png"
               className="bg-rose text-rouge px-6 py-2 rounded-full font-bold text-xs uppercase tracking-wider active:scale-95 transition-transform"
             >
               Télécharger
@@ -466,7 +466,7 @@ function Infos() {
           <h3 className="font-display text-3xl mb-4">Où dormir ?</h3>
           <p className="opacity-80 leading-relaxed mb-4">
             Nous vous recommandons l&apos;<a href="https://all.accor.com/booking/fr/ibis/hotel/9490?destination=03500-saint-pourcain-sur-sioule&dateIn=2026-09-05&dateOut=2026-09-06&nights=1&hideWDR=false&accessibleRoom=false" target="_blank" rel="noopener noreferrer" className="underline font-bold hover:opacity-70 transition-opacity">Hôtel Ibis de Saint-Pourçain-sur-Sioule</a>,
-            idéalement situé à 12 minutes du lieu de réception et à 30 minutes de la mairie.
+            idéalement situé à 12 minutes du lieu de réception.
           </p>
           <p className="opacity-70 leading-relaxed mb-3">
             D&apos;autres options sont disponibles selon vos préférences :
@@ -474,11 +474,7 @@ function Infos() {
           <ul className="space-y-2 opacity-70">
             <li className="flex items-start gap-2">
               <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-rouge shrink-0" />
-              <span><strong>Hôtel à Vichy</strong> — 17 min du lieu de réception, 57 min de la mairie</span>
-            </li>
-            <li className="flex items-start gap-2">
-              <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-rouge shrink-0" />
-              <span><strong>Hôtel à Moulins-sur-Allier</strong> — à deux pas de la mairie, 40 min du lieu de réception</span>
+              <span><strong>Hôtel à Vichy</strong> — 17 min du lieu de réception</span>
             </li>
           </ul>
         </motion.div>
@@ -492,13 +488,14 @@ function Infos() {
         >
           <h3 className="font-display text-3xl mb-6">Transports</h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div>
               <h4 className="font-bold text-lg mb-2">En train</h4>
               <p className="opacity-70 leading-relaxed text-sm">
-                Pour la cérémonie civile : <strong>gare de Moulins-sur-Allier</strong> (15 min à pied de la mairie).
-                Pour le lieu de réception : les gares les plus proches sont <strong>Vichy</strong> (17 min en voiture)
-                et <strong>Moulins-sur-Allier</strong> (40 min en voiture).
+                La gare la plus proche est <strong>Vichy</strong>, à 17 min en voiture.
+              </p>
+              <p className="opacity-70 leading-relaxed text-sm mt-2">
+                Si vous avez déjà pris vos billets pour Moulins : en venant de Paris, Vichy est la station d&apos;après. En venant de Lyon, Vichy est la station d&apos;avant.
               </p>
             </div>
             <div>
@@ -506,16 +503,6 @@ function Infos() {
               <p className="opacity-70 leading-relaxed text-sm">
                 Comptez environ <strong>3h depuis Paris</strong> et <strong>5h30 depuis Marseille</strong>.
               </p>
-            </div>
-            <div>
-              <h4 className="font-bold text-lg mb-2">Sur place</h4>
-              <p className="opacity-70 leading-relaxed text-sm">
-                Pour se déplacer entre les lieux &amp; vos hébergements, le plus simple reste la voiture.
-                Nous vous encourageons à organiser des covoiturages entre vous.
-              </p>
-              <a href="https://tally.so/r/rj0O0M" target="_blank" rel="noopener noreferrer" className="inline-block mt-3 px-5 py-2 bg-rouge text-rose rounded-full text-sm font-semibold hover:bg-rouge/80 transition-colors">
-                Formulaire covoiturage
-              </a>
             </div>
           </div>
         </motion.div>
@@ -545,57 +532,34 @@ function Lieux() {
         <p className="text-sm uppercase tracking-[0.3em] font-semibold mb-4 opacity-70">
           Où ça se passe
         </p>
-        <h2 className="font-display text-5xl sm:text-7xl">Les lieux</h2>
+        <h2 className="font-display text-5xl sm:text-7xl">Le lieu</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div className="max-w-3xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          whileInView={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-rouge text-rose rounded-2xl p-8 sm:p-10"
+          className="bg-olive text-jaune rounded-3xl p-10 sm:p-16 text-center"
         >
-          <p className="text-sm uppercase tracking-[0.2em] opacity-70 mb-2">
-            Samedi 5 sept. &mdash; 14h
+          <p className="text-sm uppercase tracking-[0.2em] opacity-70 mb-4">
+            Samedi 5 sept. &mdash; 15h30
           </p>
-          <h3 className="font-display text-3xl mb-4">Mairie</h3>
-          <p className="text-lg leading-relaxed opacity-90">
-            Mairie de Moulins-sur-Allier
-            <br />
-            <span className="opacity-70">03000 Moulins</span>
-          </p>
-          <a
-            href="https://maps.google.com/?q=Mairie+de+Moulins-sur-Allier"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block mt-6 px-6 py-3 border-2 border-rose rounded-full text-sm font-semibold uppercase tracking-wider hover:bg-rose hover:text-rouge transition-colors"
-          >
-            Voir sur Maps
-          </a>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, x: 30 }}
-          whileInView={{ opacity: 1, x: 0 }}
-          viewport={{ once: true }}
-          className="bg-olive text-jaune rounded-2xl p-8 sm:p-10"
-        >
-          <p className="text-sm uppercase tracking-[0.2em] opacity-70 mb-2">
-            Samedi 5 sept. &mdash; 16h
-          </p>
-          <h3 className="font-display text-3xl mb-4">
+          <h3 className="font-display text-4xl sm:text-5xl mb-6">
             Cérémonie & Soirée
           </h3>
-          <p className="text-lg leading-relaxed opacity-90">
+          <p className="text-xl sm:text-2xl leading-relaxed opacity-90">
+            Abbaye Saint-Gilbert
+            <br />
             Saint-Didier-la-Forêt
             <br />
             <span className="opacity-70">03110 Allier</span>
           </p>
           <a
-            href="https://maps.google.com/?q=Saint-Didier-la-Forêt+03110"
+            href="https://maps.google.com/?q=Abbaye+Saint-Gilbert+Saint-Didier-la-Forêt"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block mt-6 px-6 py-3 border-2 border-jaune rounded-full text-sm font-semibold uppercase tracking-wider hover:bg-jaune hover:text-olive transition-colors"
+            className="inline-block mt-8 px-8 py-4 border-2 border-jaune rounded-full text-sm font-semibold uppercase tracking-wider hover:bg-jaune hover:text-olive transition-colors"
           >
             Voir sur Maps
           </a>
