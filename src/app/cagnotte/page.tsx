@@ -89,7 +89,7 @@ function LivreOr() {
   }
 
   return (
-    <div className="bg-rouge text-rose rounded-3xl p-8 sm:p-10 max-w-2xl mx-auto">
+    <div className="bg-rouge text-rose rounded-3xl p-8 sm:p-10 lg:p-12">
       <h2 className="font-display text-3xl sm:text-4xl text-center mb-2">
         Laissez-nous un petit mot
       </h2>
