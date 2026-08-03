@@ -206,8 +206,9 @@ export default function CagnottePage() {
               <Method emoji="📱" title="Avec Wero">
                 <p className="opacity-80">
                   Depuis l&apos;appli de votre banque, envoyez le montant de
-                  votre choix à ce numéro via{" "}
-                  <strong className="font-semibold">Wero</strong> :
+                  votre choix via{" "}
+                  <strong className="font-semibold">Wero</strong>{" "}
+                  au numéro d&apos;Antoine :
                 </p>
                 <CopyValue value={WERO} />
               </Method>
