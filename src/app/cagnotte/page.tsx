@@ -7,7 +7,7 @@ import AnimatedSection from "@/components/AnimatedSection";
 import Van from "@/components/Van";
 
 /* ─── Coordonnées de la cagnotte ─────────────────────────────────────────── */
-const TITULAIRE = "Fiona Hiloua & Antoine Oriol";
+const TITULAIRE = "Antoine Oriol & Fiona Hiloua";
 const IBAN = "FR76 2823 3000 0175 4780 3518 609";
 const BIC = "REVOFRP2";
 const WERO = "+33 6 84 51 51 86"; // numéro de téléphone lié à Wero
