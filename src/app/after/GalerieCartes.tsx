@@ -28,7 +28,9 @@ export default function GalerieCartes() {
   return (
     <div className="w-full max-w-6xl mx-auto">
       {/* Recherche */}
-      <div className="sticky top-0 z-30 -mx-4 px-4 pt-4 pb-3 bg-rouge/95 nav-blur sm:rounded-b-3xl">
+      {/* collée juste sous le liseré rose (p-2 de la page), pour que la barre
+          reste à portée de pouce sans recouvrir le cadre */}
+      <div className="sticky top-2 z-30 -mx-3 rounded-2xl bg-rouge/95 px-3 pb-3 pt-3 nav-blur sm:top-5 sm:-mx-4 sm:px-4 sm:pt-4">
         <label className="relative block">
           <span className="sr-only">Rechercher un prénom ou une team</span>
           <svg
@@ -48,12 +50,16 @@ export default function GalerieCartes() {
             value={recherche}
             onChange={(e) => setRecherche(e.target.value)}
             placeholder="Ton prénom, ta team…"
-            className="w-full rounded-full bg-rose py-3 pl-12 pr-4 text-rouge placeholder:text-rouge/40 text-base font-medium outline-none ring-0 focus:ring-4 focus:ring-rose/40 transition-shadow"
+            enterKeyHint="search"
+            autoComplete="off"
+            autoCorrect="off"
+            // 16px minimum : en dessous, iOS zoome sur le champ à la saisie
+            className="w-full rounded-full bg-rose py-3.5 pl-12 pr-4 text-base font-medium text-rouge outline-none ring-0 transition-shadow placeholder:text-rouge/40 focus:ring-4 focus:ring-rose/40"
           />
         </label>
 
         {/* Filtres par team */}
-        <div className="mt-3 flex gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+        <div className="-mx-3 mt-3 flex gap-2 overflow-x-auto px-3 pb-1 [scrollbar-width:none] sm:mx-0 sm:px-0 [&::-webkit-scrollbar]:hidden">
           <Chip actif={team === null} onClick={() => setTeam(null)}>
             Toutes ({MEMBRES.length})
           </Chip>
@@ -65,7 +71,7 @@ export default function GalerieCartes() {
         </div>
       </div>
 
-      <p className="mt-4 mb-3 text-center text-xs uppercase tracking-[0.25em] font-semibold text-rose/60">
+      <p className="mb-3 mt-3 text-center text-[11px] font-semibold uppercase tracking-[0.25em] text-rose/60 sm:mt-4 sm:text-xs">
         {resultats.length === 0
           ? "Aucune carte"
           : `${resultats.length} carte${resultats.length > 1 ? "s" : ""}`}
@@ -76,7 +82,7 @@ export default function GalerieCartes() {
           Personne sous ce nom…
         </p>
       ) : (
-        <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-3 sm:gap-4 pb-16">
+        <ul className="grid grid-cols-2 gap-2.5 pb-10 sm:grid-cols-3 sm:gap-4 sm:pb-16 md:grid-cols-4 lg:grid-cols-5">
           {resultats.map((m, i) => (
             <motion.li
               key={m.id}
@@ -86,7 +92,8 @@ export default function GalerieCartes() {
             >
               <Link
                 href={`/after/${m.id}`}
-                className="group block rounded-2xl overflow-hidden shadow-md transition-transform duration-300 hover:-translate-y-1.5 hover:rotate-[-1.5deg] focus-visible:-translate-y-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose"
+                // active: le survol n'existe pas au doigt, il faut un retour au toucher
+                className="group block overflow-hidden rounded-2xl shadow-md transition-transform duration-300 active:scale-95 hover:-translate-y-1.5 hover:rotate-[-1.5deg] focus-visible:-translate-y-1.5 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose"
               >
                 <Image
                   src={carteSrc(m.id)}
@@ -120,7 +127,7 @@ function Chip({
     <button
       type="button"
       onClick={onClick}
-      className={`shrink-0 rounded-full px-3.5 py-1.5 text-xs font-semibold uppercase tracking-wide transition-colors ${
+      className={`flex h-9 shrink-0 items-center rounded-full px-4 text-xs font-semibold uppercase tracking-wide transition-colors ${
         actif
           ? "bg-rose text-rouge"
           : "bg-rose/15 text-rose/80 hover:bg-rose/25 hover:text-rose"

@@ -98,7 +98,7 @@ export default async function MembrePage({
     <main className="flex min-h-dvh bg-rose-bg p-3 sm:p-5">
       <div className="grain-overlay" />
 
-      <div className="relative flex flex-1 flex-col items-center rounded-[2rem] sm:rounded-[2.5rem] bg-rouge text-rose px-4 py-6 sm:px-8 sm:py-10">
+      <div className="relative flex min-w-0 flex-1 flex-col items-center rounded-[2rem] sm:rounded-[2.5rem] bg-rouge text-rose px-3 py-6 sm:px-8 sm:py-10">
         <div className="w-full max-w-5xl">
           <Link
             href="/after"
