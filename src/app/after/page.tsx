@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import AfterContent from "./AfterContent";
 
 export const metadata: Metadata = {
-  title: "Les photos — Fiona & Antoine",
+  title: "Retrouve tes photos — Fiona & Antoine",
   description:
-    "Retrouvez et déposez les photos du mariage. Bientôt disponible — pour le moment, éclatez-vous !",
+    "Cherche ta carte de membre du Fan Club et retrouve toutes les photos du mariage où tu apparais.",
 };
 
 export default function AfterPage() {

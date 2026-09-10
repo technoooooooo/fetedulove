@@ -1,7 +1,9 @@
+import path from "node:path";
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  // sans ça, Turbopack remonte jusqu'au home et prend le mauvais lockfile
+  turbopack: { root: path.resolve(".") },
 };
 
 export default nextConfig;
