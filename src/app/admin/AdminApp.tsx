@@ -109,6 +109,7 @@ export default function AdminApp() {
 }
 
 function Connexion({ onConnecte }: { onConnecte: () => Promise<void> }) {
+  const [identifiant, setIdentifiant] = useState("");
   const [motDePasse, setMotDePasse] = useState("");
   const [erreur, setErreur] = useState<string | null>(null);
   const [envoi, setEnvoi] = useState(false);
@@ -121,7 +122,7 @@ function Connexion({ onConnecte }: { onConnecte: () => Promise<void> }) {
       const res = await fetch("/api/admin/session", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ motDePasse }),
+        body: JSON.stringify({ identifiant, motDePasse }),
       });
       if (!res.ok) {
         const { error } = (await res.json()) as { error?: string };
@@ -141,8 +142,18 @@ function Connexion({ onConnecte }: { onConnecte: () => Promise<void> }) {
     >
       <h2 className="font-display text-3xl mb-4">Coulisses</h2>
       <input
-        type="password"
+        type="text"
         autoFocus
+        autoComplete="username"
+        autoCapitalize="none"
+        value={identifiant}
+        onChange={(e) => setIdentifiant(e.target.value)}
+        placeholder="Identifiant"
+        className="mb-3 w-full rounded-full bg-rose px-5 py-3 text-rouge placeholder:text-rouge/40 outline-none"
+      />
+      <input
+        type="password"
+        autoComplete="current-password"
         value={motDePasse}
         onChange={(e) => setMotDePasse(e.target.value)}
         placeholder="Mot de passe"
@@ -151,7 +162,7 @@ function Connexion({ onConnecte }: { onConnecte: () => Promise<void> }) {
       {erreur && <p className="mb-3 text-sm text-jaune">{erreur}</p>}
       <button
         type="submit"
-        disabled={envoi || motDePasse.length === 0}
+        disabled={envoi || identifiant.length === 0 || motDePasse.length === 0}
         className="w-full rounded-full bg-rose px-5 py-3 font-bold uppercase tracking-wide text-rouge disabled:opacity-40"
       >
         {envoi ? "…" : "Entrer"}

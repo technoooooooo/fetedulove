@@ -45,6 +45,22 @@ async function rest(chemin: string, options: RestOptions = {}) {
   return texte ? JSON.parse(texte) : null;
 }
 
+/**
+ * Lecture complète d'une table : PostgREST plafonne chaque réponse à 1000
+ * lignes, on enchaîne donc les pages jusqu'à en recevoir une incomplète.
+ * La requête doit porter un `order` stable pour que les pages ne se chevauchent pas.
+ */
+const PAGE = 1000;
+
+async function toutLire<T>(chemin: string): Promise<T[]> {
+  const lignes: T[] = [];
+  for (let debut = 0; ; debut += PAGE) {
+    const page = (await rest(`${chemin}&limit=${PAGE}&offset=${debut}`)) as T[];
+    lignes.push(...page);
+    if (page.length < PAGE) return lignes;
+  }
+}
+
 /* ─── Types de la base ───────────────────────────────────────────────────── */
 
 export type PhotoRow = {
@@ -123,9 +139,9 @@ export async function supprimerFichiers(chemins: string[]) {
 /* ─── Requêtes ───────────────────────────────────────────────────────────── */
 
 export async function listerPhotos(filtre?: { indexee?: boolean }): Promise<PhotoRow[]> {
-  const params = new URLSearchParams({ select: "*", order: "created_at.asc" });
+  const params = new URLSearchParams({ select: "*", order: "created_at.asc,id.asc" });
   if (filtre?.indexee !== undefined) params.set("indexee", `is.${filtre.indexee}`);
-  return (await rest(`photos?${params}`)) as PhotoRow[];
+  return toutLire<PhotoRow>(`photos?${params}`);
 }
 
 export async function creerPhotos(
@@ -146,12 +162,12 @@ export async function listerVisages(filtre?: {
   const colonnes = filtre?.avecEmpreinte === false
     ? "id,photo_id,x,y,l,h,score,membre_id,ancre,similarite"
     : "*";
-  const params = new URLSearchParams({ select: colonnes, order: "created_at.asc" });
+  const params = new URLSearchParams({ select: colonnes, order: "created_at.asc,id.asc" });
   if (filtre?.membreId !== undefined) params.set("membre_id", `eq.${filtre.membreId}`);
   if (filtre?.photoIds?.length) {
     params.set("photo_id", `in.(${filtre.photoIds.join(",")})`);
   }
-  return (await rest(`visages?${params}`)) as VisageRow[];
+  return toutLire<VisageRow>(`visages?${params}`);
 }
 
 export async function creerVisages(
@@ -227,7 +243,9 @@ export type RattachementRow = { photo_id: string; membre_id: number };
  */
 export async function listerRattachements(): Promise<RattachementRow[]> {
   try {
-    return (await rest("photos_membres?select=photo_id,membre_id")) as RattachementRow[];
+    return await toutLire<RattachementRow>(
+      "photos_membres?select=photo_id,membre_id&order=photo_id.asc,membre_id.asc",
+    );
   } catch {
     return [];
   }

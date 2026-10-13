@@ -4,17 +4,17 @@ import { cookies } from "next/headers";
 export const COOKIE_ADMIN = "fanclub_admin";
 
 /**
- * Jeton dérivé d'un mot de passe, signé avec la clé service_role.
- * Le mot de passe lui-même n'est jamais stocké dans le cookie.
+ * Jeton dérivé de l'identifiant et du mot de passe, signé avec la clé
+ * service_role. Les identifiants eux-mêmes ne sont jamais stockés dans le cookie.
  */
-export function jetonDe(motDePasse: string) {
+export function jetonDe(identifiant: string, motDePasse: string) {
   const secret = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!motDePasse || !secret) return null;
-  return createHmac("sha256", secret).update(motDePasse).digest("hex");
+  if (!identifiant || !motDePasse || !secret) return null;
+  return createHmac("sha256", secret).update(`${identifiant}\n${motDePasse}`).digest("hex");
 }
 
 export function jetonAttendu() {
-  return jetonDe(process.env.ADMIN_PASSWORD ?? "");
+  return jetonDe(process.env.ADMIN_USERNAME ?? "", process.env.ADMIN_PASSWORD ?? "");
 }
 
 export function comparer(a: string, b: string) {
